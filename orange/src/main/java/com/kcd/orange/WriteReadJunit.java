@@ -14,7 +14,7 @@ public class WriteReadJunit extends TestCase
 		try
 		{
 			String parentPath = "D:/file/";
-			String s = "Hello, World! 안녕?";
+			String s = "Hello, World! 안녕??";
 
 			byte[] by = s.getBytes();
 
