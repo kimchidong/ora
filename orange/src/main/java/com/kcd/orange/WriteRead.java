@@ -18,7 +18,7 @@ public class WriteRead
 
 			ByteBuffer buf = ByteBuffer.allocate(by.length);
 			buf.put(by);
-			buf.clear();
+			buf.clear();	//limit, capacity -> 현재 position, position -> 0
 
 			FileOutputStream f_out = new FileOutputStream(parentPath + "1.txt");
 			FileChannel out = f_out.getChannel();
