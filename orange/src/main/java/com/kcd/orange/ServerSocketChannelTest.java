@@ -62,9 +62,12 @@ public class ServerSocketChannelTest implements Runnable
 
 		while(true)
 		{
+			System.out.println(">>>>>>>>>>>>>>>> 1");
+
 			try
 			{
-				selector.select(3000);
+				//selector.select(3000);
+				selector.select();
 			}
 			catch(IOException ioe)
 			{
@@ -74,8 +77,12 @@ public class ServerSocketChannelTest implements Runnable
 			Set selectedKeys = selector.selectedKeys();
 			Iterator iter = selectedKeys.iterator();
 
+			System.out.println(">>>>>>>>>>>>>>>> selectedKeys.size() : " + selectedKeys.size());
+
 			while(iter.hasNext())
 			{
+				System.out.println(">>>>>>>>>>>>>>>> 2");
+
 				try
 				{
 					SelectionKey selected = (SelectionKey)iter.next();
@@ -127,8 +134,7 @@ public class ServerSocketChannelTest implements Runnable
 								socketChannel.finishConnect();
 							}
 						}
-
-						if(selected.isReadable())
+						else if(selected.isReadable())
 						{
 							socketChannel.read(buf);
 							buf.clear();
@@ -140,8 +146,7 @@ public class ServerSocketChannelTest implements Runnable
 								System.out.print((char)buf.get());
 							}
 						}
-
-						if(selected.isWritable())
+						else if(selected.isWritable())
 						{
 							String s = "Hello Client!!";
 							byte[] bytes = s.getBytes();
